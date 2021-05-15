@@ -8,7 +8,6 @@ function editNav() {
 }
 
 function valid() {
-  console.log("Bonjour");
   let valid = true;
   let e = false;
   if (valid === true) {
@@ -35,56 +34,65 @@ let validForm = document.getElementById('submitV');
 validForm.addEventListener("click", validFormulaire);
 
 
-
-
 function validFormulaire(e) {
   e.preventDefault();
   let prenom = document.getElementById('first').value;
   let nom = document.getElementById('last').value;
   if (prenom.length <= 2) {
     let error = document.getElementById('error');
-    console.log(error);
-    error.innerHTML = "prénom invalide";
+    error.innerHTML = "Prénom invalide";
     error.style.color = "red";
     error.style.fontSize = "20px";
   }
   if (nom.length <= 2) {
     let errorName = document.getElementById('errorName');
-    errorName.innerHTML = "Le nom est invalide";
+    errorName.innerHTML = "Nom invalide";
     errorName.style.color = "red";
     errorName.style.fontSize = "20px";
-    console.log("ça marche bien");
   }
 
-  if (prenom.length > 2)
-   {
+  if (prenom.length > 2) {
     error.innerHTML = "";
   }
-  if(nom.length > 2)
-  {
+  if (nom.length > 2) {
     errorName.innerHTML = "";
   }
-}
 
+  let email = document.getElementById('email').value;
+  let reg = new RegExp("^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$");
 
+  if (reg.test(email)) {
+    errorEmail.innerHTML = "Adresse confirmer";
+    errorEmail.style.color = "green";
+    errorEmail.style.fontSize = "20px";
+  }
+  else if (reg.test != email) {
+    errorEmail.innerHTML = "Il manque des caractères spéciaux";
+    errorEmail.style.color = "red";
+    errorEmail.style.fontSize = "20px";
+  }
 
-
-
-let email = document.getElementById('email');
-email.addEventListener('change', validateEmail);
-
-function validateEmail(email) {
-  let emailReg = new RegExp(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i);
-  let valid = emailReg.test(email);
-
-  if (!valid) {
-    return false;
-  } else {
-    return true;
+  let dataDate = document.getElementById('birthdate').value;
+  console.log(dataDate);
+  let regNum = /([12]\d{3}-([1-9]|[0-2])-([1-9]|[12]\d|[01]))/;
+  if (dataDate == "") {
+    let errorDate = document.getElementById("errorDate");
+    errorDate.innerHTML = "Ce champs est requis";
+    errorDate.style.color = "red";
+    errorDate.style.fontSize = "20px";
+    errorDate.classList.remove('text success');
+  }
+  else if (regNum.test == dataDate) {
+    errorDate.innerHTML = "";
+   
   }
 }
 
-let dataDate = document.getElementById('birthdate').value;
+
+//j'écoute la méthode change dans le champ email et j'appelle la fonction
+
+
+
 
 let quantite = document.getElementById('quantity').value;
 
