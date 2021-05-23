@@ -73,19 +73,37 @@ function validFormulaire(e) {
   }
 
   let dataDate = document.getElementById('birthdate').value;
-  console.log(dataDate);
-  let regNum = /([12]\d{3}-([1-9]|[0-2])-([1-9]|[12]\d|[01]))/;
-  if (dataDate == "") {
+  console.log("dataDate = " + dataDate);
+
+  let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/);
+
+
+  if (regNum.test(dataDate)) {
     let errorDate = document.getElementById("errorDate");
+    errorDate.innerHTML = "";
+    console.log("if");
+  }
+  else if (dataDate != regNum.test) {
     errorDate.innerHTML = "Ce champs est requis";
     errorDate.style.color = "red";
     errorDate.style.fontSize = "20px";
-    errorDate.classList.remove('text success');
+    console.log("else if");
   }
-  else if (regNum.test == dataDate) {
-    errorDate.innerHTML = "";
-   
+
+
+
+  let formData = document.getElementsByClassName('checkbox-input');
+
+  if (formData != true) {
+    let errorCity = document.getElementById('errorCity');
+    errorCity.innerHTML = "Choisissez une ville";
+    errorCity.style.color = "red";
+    errorCity.style.fontSize = "20px";
   }
+  else if (formData == true) {
+    errorCity.innerHTML = "";
+  }
+
 }
 
 
