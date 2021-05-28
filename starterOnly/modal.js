@@ -73,48 +73,67 @@ function validFormulaire(e) {
   }
 
   let dataDate = document.getElementById('birthdate').value;
-  console.log("dataDate = " + dataDate);
-
   let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/);
-
 
   if (regNum.test(dataDate)) {
     let errorDate = document.getElementById("errorDate");
     errorDate.innerHTML = "";
-    console.log("if");
   }
   else if (dataDate != regNum.test) {
     errorDate.innerHTML = "Ce champs est requis";
     errorDate.style.color = "red";
     errorDate.style.fontSize = "20px";
-    console.log("else if");
   }
 
 
+  let quantity = document.getElementById('quantity').value;
+  let regQuant = new RegExp(/^[0-9]{1,2}$/)
 
-  let formData = document.getElementsByClassName('checkbox-input');
-
-  if (formData != true) {
-    let errorCity = document.getElementById('errorCity');
-    errorCity.innerHTML = "Choisissez une ville";
-    errorCity.style.color = "red";
-    errorCity.style.fontSize = "20px";
+  if (quantity != regQuant.test) {
+    let quantError = document.getElementById('quantError');
+    quantError.innerHTML = "entrer un nombre";
+    quantError.style.color = "red";
+    quantError.style.fontSize = "20px";
   }
-  else if (formData == true) {
-    errorCity.innerHTML = "";
+  if (regQuant.test(quantity)) {
+    quantError.innerHTML = "";
+
+    if (quantity <= 99) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
+
+  let len = document.getElementsByClassName('location').length;
+  let checkbox = [];
+
+  for (i = 1; i <= len; i++) {
+    let str = "location" + i;
+    let elem = document.getElementById(str);
+    checkbox.push(elem);
+  }
+
+  for (i = 0; i < len; i++) {
+    if (checkbox[i] && checkbox[i].checked === true) {
+      let errorCity = document.getElementById('errorCity');
+      errorCity.innerHTML = "";
+      break;
+    }
+    else {
+      errorCity.innerHTML = "Choisissez une ville";
+      errorCity.style.color = "red";
+      errorCity.style.fontSize = "20px";
+
+    }
+  }
 }
 
 
+
 //j'écoute la méthode change dans le champ email et j'appelle la fonction
-
-
-
-
-let quantite = document.getElementById('quantity').value;
-
-
 
 
 
