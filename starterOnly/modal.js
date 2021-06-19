@@ -26,30 +26,32 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 // launch modal event
-
-
-
-
 let validForm = document.getElementById('submitV');
 validForm.addEventListener("click", validFormulaire);
 
-
 function validFormulaire(e) {
   e.preventDefault();
+
+  let err = 0;
+
   let prenom = document.getElementById('first').value;
   let nom = document.getElementById('last').value;
   if (prenom.length <= 2) {
+    err = 1;
     let error = document.getElementById('error');
     error.innerHTML = "Prénom invalide";
     error.style.color = "red";
     error.style.fontSize = "20px";
   }
+
   if (nom.length <= 2) {
+    err = 1;
     let errorName = document.getElementById('errorName');
     errorName.innerHTML = "Nom invalide";
     errorName.style.color = "red";
     errorName.style.fontSize = "20px";
   }
+
 
   if (prenom.length > 2) {
     error.innerHTML = "";
@@ -66,7 +68,8 @@ function validFormulaire(e) {
     errorEmail.style.color = "green";
     errorEmail.style.fontSize = "20px";
   }
-  else if (reg.test != email) {
+  else {
+    err = 1;
     errorEmail.innerHTML = "Il manque des caractères spéciaux";
     errorEmail.style.color = "red";
     errorEmail.style.fontSize = "20px";
@@ -79,31 +82,23 @@ function validFormulaire(e) {
     let errorDate = document.getElementById("errorDate");
     errorDate.innerHTML = "";
   }
-  else if (dataDate != regNum.test) {
+  else {
+    err = 1;
     errorDate.innerHTML = "Ce champs est requis";
     errorDate.style.color = "red";
     errorDate.style.fontSize = "20px";
   }
 
 
-  let quantity = document.getElementById('quantity').value;
-  let regQuant = new RegExp(/^[0-9]{1,2}$/)
+  let quantity = parseInt(document.getElementById('quantity').value);
 
-  if (quantity != regQuant.test) {
+  if (!(quantity >= 0 && quantity <= 99)) {
+    console.log("if regex");
     let quantError = document.getElementById('quantError');
+    err = 1;
     quantError.innerHTML = "entrer un nombre";
     quantError.style.color = "red";
     quantError.style.fontSize = "20px";
-  }
-  if (regQuant.test(quantity)) {
-    quantError.innerHTML = "";
-
-    if (quantity <= 99) {
-      return true;
-    }
-    else {
-      return false;
-    }
   }
 
 
@@ -116,19 +111,66 @@ function validFormulaire(e) {
     checkbox.push(elem);
   }
 
-  for (i = 0; i < len; i++) {
-    if (checkbox[i] && checkbox[i].checked === true) {
-      let errorCity = document.getElementById('errorCity');
-      errorCity.innerHTML = "";
-      break;
-    }
-    else {
-      errorCity.innerHTML = "Choisissez une ville";
-      errorCity.style.color = "red";
-      errorCity.style.fontSize = "20px";
+  let stop = false;
 
+  for (i = 0; i < len; i++) {
+    if (stop == false) {
+      console.log(checkbox[i].checked);
+      if (checkbox[i] && checkbox[i].checked === true) {
+        let errorCity = document.getElementById('errorCity');
+        errorCity.innerHTML = "";
+        stop = true;
+      }
+      else {
+        err = 1;
+        errorCity.innerHTML = "Choisissez une ville";
+        errorCity.style.color = "red";
+        errorCity.style.fontSize = "20px";
+      }
     }
+
   }
+
+  let condition = document.getElementById('checkbox1');
+  if (condition.checked === true) {
+    let errorValidationCondition = document.getElementById('errorValidationCondition');
+    errorValidationCondition.innerHTML = "";
+  }
+  else {
+    console.log("else");
+    errorValidationCondition.innerHTML = "Veuillez accepter les conditions d'utilisation";
+    errorValidationCondition.style.color = "red";
+    errorValidationCondition.style.fontSize = "20px";
+    err = 1;
+  }
+  console.log("err = " + err);
+  if (err == 0) {
+    console.log("je rentre dans la condition");
+    let list = document.getElementById('formulaire');
+    let newP = "<p style=\"margin-bottom: 400px;\"class =\"hero-text\">Merci votre inscription a été valider</p> <button type=\"button\" onclick = \"closeModal()\" class =\"btn-submit\">Close</button>";
+
+    newP.textContent = "Formulaire validé ! Merci";
+    console.log(newP);
+    // parent.replaceChild(parent, list);
+    list.innerHTML = newP;
+  }
+}
+
+let close = document.getElementsByClassName('close')[0];
+close.addEventListener('click', function () {
+  let content = document.getElementsByClassName('content')[0];
+  let bg = document.getElementsByClassName('bground')[0];
+  content.style.display = 'none';
+  bg.style.zIndex = 0;
+  bg.style.backgroundColor = 'transparent';
+});
+
+function closeModal() {
+  let content = document.getElementsByClassName('content')[0];
+  let bg = document.getElementsByClassName('bground')[0];
+  content.style.display = 'none';
+  bg.style.zIndex = 0;
+  bg.style.backgroundColor = 'transparent';
 }
 
 
@@ -141,9 +183,12 @@ function validFormulaire(e) {
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
 
 
-
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  let content = document.getElementsByClassName('content')[0];
+  let bg = document.getElementsByClassName('bground')[0];
+  content.style.removeProperty('display');
+ bg.style.zIndex = 1;
 }
 
