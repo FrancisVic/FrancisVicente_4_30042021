@@ -111,25 +111,22 @@ function validFormulaire(e) {
     checkbox.push(elem);
   }
 
-  let stop = false;
-
+  err = 1;
   for (i = 0; i < len; i++) {
-    if (stop == false) {
-      console.log(checkbox[i].checked);
-      if (checkbox[i] && checkbox[i].checked === true) {
-        let errorCity = document.getElementById('errorCity');
-        errorCity.innerHTML = "";
-        stop = true;
-      }
-      else {
-        err = 1;
-        errorCity.innerHTML = "Choisissez une ville";
-        errorCity.style.color = "red";
-        errorCity.style.fontSize = "20px";
-      }
+    if (checkbox[i] && checkbox[i].checked === true) {
+      let errorCity = document.getElementById('errorCity');
+      errorCity.innerHTML = "";
+      err = 0;
     }
-
   }
+  if (err == 1) {
+    errorCity.innerHTML = "Choisissez une ville";
+    errorCity.style.color = "red";
+    errorCity.style.fontSize = "20px";
+    console.log("erreur")
+  }
+  else
+    console.log("pas erreur");
 
   let condition = document.getElementById('checkbox1');
   if (condition.checked === true) {
@@ -147,12 +144,26 @@ function validFormulaire(e) {
   if (err == 0) {
     console.log("je rentre dans la condition");
     let list = document.getElementById('formulaire');
-    let newP = "<p style=\"margin-bottom: 400px;\"class =\"hero-text\">Merci votre inscription a été valider</p> <button type=\"button\" onclick = \"closeModal()\" class =\"btn-submit\">Close</button>";
-
+    let parentNode = list.parentNode;
+    let newP = document.createElement('p');
+    newP.style.marginBottom = "600px";
+    newP.style.textAlign = "center";
     newP.textContent = "Formulaire validé ! Merci";
     console.log(newP);
-    // parent.replaceChild(parent, list);
-    list.innerHTML = newP;
+    let newButton = document.createElement('input');
+    console.log(newButton);
+    newButton.classList.add("btn-submit");
+    newButton.setAttribute("value", "close");
+    newButton.setAttribute("type", "submit");
+    newButton.addEventListener('click', function () {
+      let content = document.getElementsByClassName('content')[0];
+      let bg = document.getElementsByClassName('bground')[0];
+      content.style.display = 'none';
+      bg.style.zIndex = 0;
+      
+    })
+    parentNode.appendChild(newButton);
+    parentNode.replaceChild(newP, list);
   }
 }
 
@@ -177,11 +188,7 @@ function closeModal() {
 
 //j'écoute la méthode change dans le champ email et j'appelle la fonction
 
-
-
-
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
-
 
 // launch modal form
 function launchModal() {
@@ -189,6 +196,5 @@ function launchModal() {
   let content = document.getElementsByClassName('content')[0];
   let bg = document.getElementsByClassName('bground')[0];
   content.style.removeProperty('display');
- bg.style.zIndex = 1;
+  bg.style.zIndex = 1;
 }
-
