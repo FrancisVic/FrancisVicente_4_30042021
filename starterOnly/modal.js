@@ -155,33 +155,23 @@ function validFormulaire(e) {
     newButton.classList.add("btn-submit");
     newButton.setAttribute("value", "close");
     newButton.setAttribute("type", "submit");
-    newButton.addEventListener('click', function () {
-      let content = document.getElementsByClassName('content')[0];
-      let bg = document.getElementsByClassName('bground')[0];
-      content.style.display = 'none';
-      bg.style.zIndex = 0;
-      
-    })
+    newButton.addEventListener('click',closeModal);
+  
     parentNode.appendChild(newButton);
     parentNode.replaceChild(newP, list);
   }
 }
 
-let close = document.getElementsByClassName('close')[0];
-close.addEventListener('click', function () {
-  let content = document.getElementsByClassName('content')[0];
-  let bg = document.getElementsByClassName('bground')[0];
-  content.style.display = 'none';
-  bg.style.zIndex = 0;
-  bg.style.backgroundColor = 'transparent';
-});
 
 function closeModal() {
   let content = document.getElementsByClassName('content')[0];
   let bg = document.getElementsByClassName('bground')[0];
+  console.log(bg);
+  let bg2 = document.getElementsByClassName('bground');
+  console.log(bg2);
   content.style.display = 'none';
   bg.style.zIndex = 0;
-  bg.style.backgroundColor = 'transparent';
+  bg.style.backgroundColor = 'rgba(26, 39, 156, 0)';
 }
 
 
