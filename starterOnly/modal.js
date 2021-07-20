@@ -29,37 +29,37 @@ const formData = document.querySelectorAll(".formData");
 let validForm = document.getElementById('submitV');
 validForm.addEventListener("click", validFormulaire);
 
-function validFormulaire(e) {
-  e.preventDefault();
-
-  let err = 0;
-
+/*validation du nom et prenom*/
+function validateNameAndLastName() {
   let prenom = document.getElementById('first').value;
   let nom = document.getElementById('last').value;
   if (prenom.length <= 2) {
-    err = 1;
     let error = document.getElementById('error');
     error.innerHTML = "Prénom invalide";
     error.style.color = "red";
     error.style.fontSize = "20px";
+    return false
   }
 
   if (nom.length <= 2) {
-    err = 1;
     let errorName = document.getElementById('errorName');
     errorName.innerHTML = "Nom invalide";
     errorName.style.color = "red";
     errorName.style.fontSize = "20px";
+    return false;
   }
-
-
   if (prenom.length > 2) {
     error.innerHTML = "";
+    return true;
   }
   if (nom.length > 2) {
     errorName.innerHTML = "";
+    return true;
   }
+}
 
+/*validation de l'adresse mail*/
+function validateMail() {
   let email = document.getElementById('email').value;
   let reg = new RegExp("^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$");
 
@@ -67,41 +67,49 @@ function validFormulaire(e) {
     errorEmail.innerHTML = "Adresse confirmer";
     errorEmail.style.color = "green";
     errorEmail.style.fontSize = "20px";
+    return true;
   }
   else {
-    err = 1;
     errorEmail.innerHTML = "Il manque des caractères spéciaux";
     errorEmail.style.color = "red";
     errorEmail.style.fontSize = "20px";
+    return false;
   }
+}
 
+/*validation de la date*/
+function validateDate() {
   let dataDate = document.getElementById('birthdate').value;
-  let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/);
+  let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/); //Expression régulière est un pattern de validation
 
   if (regNum.test(dataDate)) {
     let errorDate = document.getElementById("errorDate");
     errorDate.innerHTML = "";
+    return true;
   }
   else {
-    err = 1;
     errorDate.innerHTML = "Ce champs est requis";
     errorDate.style.color = "red";
     errorDate.style.fontSize = "20px";
+    return false;
   }
+}
 
-
+/*validation de la quantité*/
+function validateQuantity() {
   let quantity = parseInt(document.getElementById('quantity').value);
-
   if (!(quantity >= 0 && quantity <= 99)) {
-    console.log("if regex");
     let quantError = document.getElementById('quantError');
-    err = 1;
     quantError.innerHTML = "entrer un nombre";
     quantError.style.color = "red";
     quantError.style.fontSize = "20px";
+    return false;
   }
+  return true;
+}
 
-
+/*validation de la ville*/
+function validateLocation() {
   let len = document.getElementsByClassName('location').length;
   let checkbox = [];
 
@@ -110,38 +118,56 @@ function validFormulaire(e) {
     let elem = document.getElementById(str);
     checkbox.push(elem);
   }
-
-  err = 1;
+  let verify = false;
   for (i = 0; i < len; i++) {
     if (checkbox[i] && checkbox[i].checked === true) {
       let errorCity = document.getElementById('errorCity');
       errorCity.innerHTML = "";
-      err = 0;
+      verify = true;
+      break;
     }
   }
-  if (err == 1) {
+  if (verify == false) {
     errorCity.innerHTML = "Choisissez une ville";
     errorCity.style.color = "red";
     errorCity.style.fontSize = "20px";
-    console.log("erreur")
+    console.log("erreur");
+    return false;
   }
   else
-    console.log("pas erreur");
+    return true;
+}
 
+/*validation des conditions*/
+function validateCheckbox() {
   let condition = document.getElementById('checkbox1');
   if (condition.checked === true) {
     let errorValidationCondition = document.getElementById('errorValidationCondition');
     errorValidationCondition.innerHTML = "";
+    return true;
   }
   else {
     console.log("else");
     errorValidationCondition.innerHTML = "Veuillez accepter les conditions d'utilisation";
     errorValidationCondition.style.color = "red";
     errorValidationCondition.style.fontSize = "20px";
-    err = 1;
+    return false;
   }
-  console.log("err = " + err);
-  if (err == 0) {
+}
+
+function validFormulaire(e) {
+  e.preventDefault();
+  let err = true;
+  validateNameAndLastName();
+  validateMail();
+  validateDate();
+  validateQuantity();
+  validateLocation();
+  validateCheckbox();
+
+  if (validateNameAndLastName() && validateMail() && validateDate() && validateQuantity() && validateLocation() && validateCheckbox())
+    err = false;
+  if (err == false) {
     console.log("je rentre dans la condition");
     let list = document.getElementById('formulaire');
     let parentNode = list.parentNode;
@@ -155,8 +181,7 @@ function validFormulaire(e) {
     newButton.classList.add("btn-submit");
     newButton.setAttribute("value", "close");
     newButton.setAttribute("type", "submit");
-    newButton.addEventListener('click',closeModal);
-  
+    newButton.addEventListener('click', closeModal);
     parentNode.appendChild(newButton);
     parentNode.replaceChild(newP, list);
   }
@@ -172,6 +197,7 @@ function closeModal() {
   content.style.display = 'none';
   bg.style.zIndex = 0;
   bg.style.backgroundColor = 'rgba(26, 39, 156, 0)';
+  document.location.reload();
 }
 
 
