@@ -14,7 +14,7 @@ function valid() {
     return true;
   }
   else {
-    return false; 
+    return false;
   }
 }
 
@@ -33,28 +33,45 @@ validForm.addEventListener("click", validFormulaire);
 function validateNameAndLastName() {
   let prenom = document.getElementById('first').value;
   let nom = document.getElementById('last').value;
-  if (prenom.length <= 2) {
-    let error = document.getElementById('error');
+
+  let regName = new RegExp("^([a-zA-Z]){2,}$");
+  console.log(regName);
+
+  if (prenom.length > 2) {
+    error.innerHTML = "";
+  }
+  if (nom.length > 2) {
+    errorName.innerHTML = "";
+  }
+  if (regName.test(nom)) {
+    errorName.innerHTML = "";
+    console.log(regName);
+  }
+  else {
+    errorName.innerHTML = "Nom invalide";
+    errorName.style.color = "red";
+    errorName.style.fontSize = "20px";
+  }
+  if (regName.test(prenom)) {
+    error.innerHTML = "";
+    console.log(regName);
+  }
+  else {
     error.innerHTML = "Prénom invalide";
     error.style.color = "red";
     error.style.fontSize = "20px";
-    return false
   }
-
+  if (prenom.length <= 2) {
+    let error = document.getElementById('error');
+    error.innerHTML = "Prénom invalide";
+    error.style.color = "red";  
+    error.style.fontSize = "20px";
+  }
   if (nom.length <= 2) {
     let errorName = document.getElementById('errorName');
     errorName.innerHTML = "Nom invalide";
     errorName.style.color = "red";
     errorName.style.fontSize = "20px";
-    return false;
-  }
-  if (prenom.length > 2) {
-    error.innerHTML = "";
-    return true;
-  }
-  if (nom.length > 2) {
-    errorName.innerHTML = "";
-    return true;
   }
 }
 
@@ -62,7 +79,7 @@ function validateNameAndLastName() {
 function validateMail() {
   let email = document.getElementById('email').value;
   let reg = new RegExp("^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$");
-
+  console.log(reg);
   if (reg.test(email)) {
     errorEmail.innerHTML = "Adresse confirmer";
     errorEmail.style.color = "green";
@@ -103,9 +120,9 @@ function validateQuantity() {
     quantError.innerHTML = "entrer un nombre";
     quantError.style.color = "red";
     quantError.style.fontSize = "20px";
-    return false;
   }
-  return true;
+  else
+    quantError.innerHTML = "";
 }
 
 /*validation de la ville*/
@@ -131,7 +148,6 @@ function validateLocation() {
     errorCity.innerHTML = "Choisissez une ville";
     errorCity.style.color = "red";
     errorCity.style.fontSize = "20px";
-    console.log("erreur");
     return false;
   }
   else
