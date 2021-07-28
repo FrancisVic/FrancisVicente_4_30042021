@@ -80,7 +80,7 @@ function validateNameAndLastName() {
 /*validation de l'adresse mail*/
 function validateMail() {
   let email = document.getElementById('email').value;
-  let reg = new RegExp("^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$");
+  let reg = new RegExp("^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$"); //Expression régulière est un pattern de validation
   if (reg.test(email)) {
     errorEmail.innerHTML = "Adresse confirmer";
     errorEmail.style.color = "green";
@@ -98,7 +98,7 @@ function validateMail() {
 /*validation de la date*/
 function validateDate() {
   let dataDate = document.getElementById('birthdate').value;
-  let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/); //Expression régulière est un pattern de validation
+  let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/); 
 
   if (regNum.test(dataDate)) {
     let errorDate = document.getElementById("errorDate");
@@ -166,7 +166,6 @@ function validateCheckbox() {
     return true;
   }
   else {
-    console.log("else");
     errorValidationCondition.innerHTML = "Veuillez accepter les conditions d'utilisation";
     errorValidationCondition.style.color = "red";
     errorValidationCondition.style.fontSize = "20px";

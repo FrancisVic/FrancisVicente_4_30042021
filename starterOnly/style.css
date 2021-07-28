@@ -575,54 +575,13 @@ footer {
 }
 /*# sourceMappingURL=modal.scss.map */
 @media screen and (max-width: 800px) {
-  .topnav {
-    margin: 8% 2.5%;
-    margin-bottom: 0px;
-  }
-
-  .header-logo {
-    margin-left: 20px;
-  }
-
-  img {
+  .header-logo img {
     width: 125px;
   }
 
-  .fa {
-    color: red;
-  }
-
-  .hero-content {
-    padding-left: 0px;
-    padding-top: 0px;
-  }
-  .hero-content h1 {
+  .hero-headline h1 {
     font-size: 35px;
-    font-weight: bold;
-  }
-
-  .hero-section {
-    margin-bottom: 0px;
-    min-height: 0px;
-  }
-  .hero-section .btn-signup {
-    padding: 7px 30px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-  }
-
-  main {
-    margin-bottom: 0px;
-  }
-
-  .hero-img img {
-    margin-top: 0px;
-  }
-
-  .hero-text {
-    font-size: 15px;
-    margin-top: 20px;
   }
 }
 
-/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=style.css.map */
