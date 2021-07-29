@@ -576,12 +576,29 @@ footer {
 
 /*# sourceMappingURL=modal.scss.map */
 @media screen and (max-width: 800px) {
+  #myTopnav {
+    z-index: 2;
+    background-color: #fff;
+    margin-top: 0px;
+    width: 100%;
+    margin-left: 0px;
+    padding: 6px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+  }
   .topnav {
     margin: 8% 2.5%;
     margin-bottom: 0px;
+    & a.icon {
+      margin: 0px;
+      margin-right: 18px;
+    }
   }
   .header-logo {
-    margin-left: 20px;
+    padding-right: 25px;
+    margin-left: 30px;
   }
   img {
     width: 125px;
@@ -608,9 +625,13 @@ footer {
     }
   }
 
-  main
-  {
+  .content {
+    margin-top: 50px;
+  }
+
+  main {
     margin-bottom: 0px;
+    font-size: 0px;
   }
 
   .hero-img img {
@@ -619,5 +640,19 @@ footer {
   .hero-text {
     font-size: 15px;
     margin-top: 20px;
+  }
+  .bground {
+    overflow: hidden;
+  }
+  .formData {
+    & label {
+      font-size: 13px;
+    }
+    .text-control {
+      height: 40px;
+    }
+    .modal-body p {
+      color: #fff;
+    }
   }
 }

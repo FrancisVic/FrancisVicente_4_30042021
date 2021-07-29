@@ -98,7 +98,7 @@ function validateMail() {
 /*validation de la date*/
 function validateDate() {
   let dataDate = document.getElementById('birthdate').value;
-  let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/); 
+  let regNum = new RegExp(/^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$/);
 
   if (regNum.test(dataDate)) {
     let errorDate = document.getElementById("errorDate");
@@ -211,31 +211,32 @@ function validFormulaire(e) {
   }
 }
 
-  function closeModal() {
-    let content = document.getElementsByClassName('content')[0];
-    let bg = document.getElementsByClassName('bground')[0];
-    console.log(bg);
-    let bg2 = document.getElementsByClassName('bground');
-    console.log(bg2);
-    content.style.display = 'none';
-    bg.style.zIndex = 0;
-    bg.style.backgroundColor = 'rgba(26, 39, 156, 0)';
-    document.location.reload();
-  }
+
+function closeModal() {
+  let content = document.getElementsByClassName('content')[0];
+  let bg = document.getElementsByClassName('bground')[0];
+  console.log(bg);
+  let bg2 = document.getElementsByClassName('bground');
+  console.log(bg2);
+  content.style.display = 'none';
+  bg.style.zIndex = 0;
+  bg.style.backgroundColor = 'rgba(26, 39, 156, 0)';
+  document.location.reload();
+}
 
 
 
-  //j'écoute la méthode change dans le champ email et j'appelle la fonction
+//j'écoute la méthode change dans le champ email et j'appelle la fonction
 
-  modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
 
-  // launch modal form
-  function launchModal() {
-    modalbg.style.display = "block";
-    let content = document.getElementsByClassName('content')[0];
-    let bg = document.getElementsByClassName('bground')[0];
-    content.style.removeProperty('display');
-    bg.style.zIndex = 1;
-    let iconClose = document.getElementsByClassName('close')[0];
-    iconClose.addEventListener("click", closeModal);
-  }
+// launch modal form
+function launchModal() {
+  modalbg.style.display = "block";
+  let content = document.getElementsByClassName('content')[0];
+  let bg = document.getElementsByClassName('bground')[0];
+  content.style.removeProperty('display');
+  bg.style.zIndex = 1;
+  let iconClose = document.getElementsByClassName('close')[0];
+  iconClose.addEventListener("click", closeModal);
+}
