@@ -198,6 +198,7 @@ function validFormulaire(e) {
     let list = document.getElementById('formulaire');
     let parentNode = list.parentNode;
     let newP = document.createElement('p');
+    newP.id = "messageSucces";
     newP.style.marginBottom = "600px";
     newP.style.textAlign = "center";
     newP.textContent = "Formulaire validé ! Merci";

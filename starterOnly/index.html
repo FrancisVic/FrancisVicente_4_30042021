@@ -59,33 +59,33 @@
             <div class="formData">
               <label for="first">Prénom</label><br>
               <input class="text-control"  type="text" id="first" name="first" minlength="2" /><br>
-              <span id="error"></span>
+              <span id="error" class="error"></span>
             </div>
             <div class="formData">
               <label for="last">Nom</label><br>
               <input class="text-control" type="text" id="last" name="last" /><br>
-              <span id="errorName"></span>
+              <span id="errorName" class="error"></span>
             </div>
             <div class="formData">
               <label for="email">E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" /><br>
-              <span id="errorEmail"></span>
+              <span id="errorEmail" class="error"></span>
             </div>
             <div class="formData">
               <label>Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
-              <span id="errorDate"></span>
+              <span id="errorDate" class="error"></span>
             </div>
             <div class="formData">
               <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-              <span id="quantError"></span>
+              <span id="quantError" class="error"></span>
             </div>
             <p class="text-label">Quelles villes ?</p>
             <div class="formData">
               <input class="checkbox-input location" type="radio" id="location1" name="location" value="New York" />
               <label class="checkbox-label" for="location1">
-                <span class="checkbox-icon"></span>
+                <span class="checkbox-icon" class="error"></span>
                 New York</label>
 
               <input class="checkbox-input location" type="radio" id="location2" name="location" value="San Francisco" />
@@ -109,7 +109,7 @@
                 <span class="checkbox-icon"></span>
                 Portland</label>
             </div>
-            <div id="errorCity"></div>
+            <div id="errorCity" class="error"></div>
 
             <div class="formData">
               <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
@@ -124,7 +124,7 @@
                 Je Je souhaite être prévenu des prochains évènements.
               </label>
               <br>
-              <div id="errorValidationCondition"></div>
+              <div id="errorValidationCondition" class="error"></div>
             </div>
             <input class="btn-submit" id="submitV" type="submit" class="button" value="C'est parti" />
           </form>
