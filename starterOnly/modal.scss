@@ -643,16 +643,14 @@ footer {
     .modal-body p {
       color: #fff;
     }
-    .error
-    {
+    .error {
       font-size: 16px !important;
     }
   }
-  #messageSucces{
+  #messageSucces {
     margin-bottom: 300px !important;
     margin-top: 300px !important;
   }
-  
 }
 @keyframes modalopen {
   from {
@@ -663,8 +661,18 @@ footer {
     opacity: 1;
   }
 }
+@media screen and (max-width: 800px) {
 
-
-
+  .btn-signup
+  {
+    padding: 6px 17px;
+  }
+  .hero-content h1 {
+    font-size: 30px;
+    margin-top: 50px;
+  }
+  .hero-text{
+    font-size: 9px;
+  }
+}
 /*# sourceMappingURL=modal.scss.map */
-

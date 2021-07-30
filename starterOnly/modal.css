@@ -688,4 +688,17 @@ footer {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .btn-signup {
+    padding: 6px 17px;
+  }
+  .hero-content h1 {
+    font-size: 30px;
+    margin-top: 50px;
+  }
+  .hero-text {
+    font-size: 9px;
+  }
+}
 /*# sourceMappingURL=modal.css.map */
